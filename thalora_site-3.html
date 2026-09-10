@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THALORA — Titan'da Yeni Bir Dünya</title>
+  <style>
+    :root{
+      --bg:#090707;
+      --panel:#17100d;
+      --panel2:#211611;
+      --orange:#e56b2f;
+      --orange2:#ff9a4d;
+      --cream:#f6e9d5;
+      --muted:#bba895;
+      --line:rgba(246,233,213,.13);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--cream);
+      line-height:1.6;
+    }
+
+    nav{
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:10;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 7%;
+      background:rgba(9,7,7,.76);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .brand{
+      color:var(--cream);
+      text-decoration:none;
+      font-size:1.25rem;
+      font-weight:800;
+      letter-spacing:.22em;
+    }
+
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap:28px;
+    }
+
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      font-size:.92rem;
+      transition:.2s;
+    }
+
+    nav a:hover{color:var(--orange2)}
+
+    .hero{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:120px 7% 70px;
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(229,107,47,.22), transparent 28%),
+        radial-gradient(circle at 80% 70%, rgba(255,154,77,.08), transparent 25%),
+        linear-gradient(145deg,#090707 0%,#170d09 52%,#080606 100%);
+    }
+
+    .stars{
+      position:absolute;
+      inset:0;
+      opacity:.55;
+      background-image:
+        radial-gradient(circle,#fff 1px,transparent 1px),
+        radial-gradient(circle,#f5bd91 1px,transparent 1px);
+      background-size:95px 95px,150px 150px;
+      background-position:20px 15px,60px 80px;
+    }
+
+    .hero-content{position:relative;max-width:900px}
+
+    .planet{
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      margin:0 auto 30px;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          #b94e24 0 12px,
+          #e47a38 12px 22px,
+          #8f371d 22px 30px
+        );
+      box-shadow:0 0 70px rgba(229,107,47,.35);
+      position:relative;
+    }
+
+    .planet:after{
+      content:"";
+      position:absolute;
+      width:290px;
+      height:70px;
+      border:10px solid rgba(245,225,198,.72);
+      border-radius:50%;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%) rotate(-14deg);
+      box-shadow:0 0 20px rgba(245,225,198,.15);
+    }
+
+    .eyebrow{
+      color:var(--orange2);
+      text-transform:uppercase;
+      letter-spacing:.3em;
+      font-size:.8rem;
+      font-weight:700;
+    }
+
+    h1{
+      font-size:clamp(4rem,13vw,9rem);
+      line-height:.9;
+      letter-spacing:.08em;
+      margin:16px 0 20px;
+    }
+
+    .hero p{
+      max-width:650px;
+      margin:auto;
+      color:var(--muted);
+      font-size:1.08rem;
+    }
+
+    .button{
+      display:inline-block;
+      margin-top:30px;
+      padding:13px 24px;
+      border:1px solid var(--orange);
+      border-radius:999px;
+      color:var(--cream);
+      text-decoration:none;
+      transition:.25s;
+    }
+
+    .button:hover{
+      background:var(--orange);
+      color:#160b07;
+      transform:translateY(-2px);
+    }
+
+    section{
+      padding:100px 7%;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    .section-label{
+      color:var(--orange2);
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.25em;
+      margin-bottom:10px;
+      font-weight:700;
+    }
+
+    h2{
+      font-size:clamp(2rem,5vw,3.8rem);
+      margin-bottom:25px;
+      line-height:1.05;
+    }
+
+    .intro{
+      max-width:760px;
+      color:var(--muted);
+      font-size:1.05rem;
+    }
+
+    .facts{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:45px;
+    }
+
+    .fact{
+      background:linear-gradient(145deg,var(--panel),var(--panel2));
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:24px;
+    }
+
+    .fact span{
+      display:block;
+      color:var(--muted);
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      margin-bottom:7px;
+    }
+
+    .fact strong{font-size:1.15rem}
+
+    .saturn-section{
+      max-width:none;
+      background:linear-gradient(110deg,#160b08,#0b0807);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+
+    .saturn-inner{
+      max-width:1200px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:70px;
+      align-items:center;
+    }
+
+    .big-saturn{
+      width:330px;
+      height:330px;
+      border-radius:50%;
+      margin:auto;
+      background:radial-gradient(circle at 35% 30%,#f0a05f,#b54d25 48%,#672313 100%);
+      position:relative;
+      box-shadow:0 0 100px rgba(229,107,47,.18);
+    }
+
+    .big-saturn:after{
+      content:"";
+      position:absolute;
+      width:520px;
+      height:130px;
+      border:18px solid rgba(246,233,213,.55);
+      border-radius:50%;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%) rotate(-12deg);
+    }
+
+    .language{
+      margin-top:25px;
+      padding:22px;
+      border-left:3px solid var(--orange);
+      background:rgba(255,255,255,.025);
+    }
+
+    .language strong{font-size:1.5rem}
+
+    footer{
+      text-align:center;
+      padding:50px 7%;
+      color:var(--muted);
+      border-top:1px solid var(--line);
+    }
+
+    footer strong{color:var(--cream);letter-spacing:.15em}
+
+    @media(max-width:800px){
+      nav ul{display:none}
+      .facts{grid-template-columns:1fr 1fr}
+      .saturn-inner{grid-template-columns:1fr}
+      .big-saturn{width:230px;height:230px}
+      .big-saturn:after{width:360px;height:90px}
+    }
+
+    @media(max-width:500px){
+      .facts{grid-template-columns:1fr}
+      h1{font-size:4rem}
+      .planet{width:130px;height:130px}
+      .planet:after{width:210px;height:50px}
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a class="brand" href="#anasayfa">THALORA</a>
+    <ul>
+      <li><a href="#hakkinda">Hakkında</a></li>
+      <li><a href="#saturn">Satürn</a></li>
+      <li><a href="#lorash">Lorash</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <header class="hero" id="anasayfa">
+      <div class="stars"></div>
+      <div class="hero-content">
+        <div class="planet"></div>
+        <div class="eyebrow">Titan • Satürn Sistemi</div>
+        <h1>THALORA</h1>
+        <p>
+          Titan'ın gökyüzü altında, Satürn'ün halkalarının ışığında
+          kendine özgü kimliğiyle var olan bir ülke.
+        </p>
+        <a class="button" href="#hakkinda">Thalora'yı keşfet ↓</a>
+      </div>
+    </header>
+
+    <section id="hakkinda">
+      <div class="section-label">Thalora hakkında</div>
+      <h2>Titan'da yeni bir dünya.</h2>
+      <p class="intro">
+        Thalora, Satürn'ün en büyük uydusu Titan'da bulunan ve kendi
+        kültürü, dili ve sembolleriyle şekillenen bir ülkedir.
+        Thalora'nın kimliğinde Titan'ın gökyüzü ve Satürn önemli bir yere sahiptir.
+      </p>
+
+      <div class="facts">
+        <div class="fact">
+          <span>Konum</span>
+          <strong>Titan</strong>
+        </div>
+        <div class="fact">
+          <span>Başkent</span>
+          <strong>Jaxora</strong>
+        </div>
+        <div class="fact">
+          <span>Resmî dil</span>
+          <strong>Lorash</strong>
+        </div>
+        <div class="fact">
+          <span>Ulusal sembol</span>
+          <strong>Satürn</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="saturn-section" id="saturn">
+      <div class="saturn-inner">
+        <div>
+          <div class="section-label">Ulusal sembol</div>
+          <h2>Satürn.</h2>
+          <p class="intro">
+            Satürn, Thalora'nın en belirgin sembollerinden biridir.
+            Ülkenin bayrağında yer alır ve para biriminin tasarımında
+            da kendine özgü bir şekilde kullanılır.
+          </p>
+        </div>
+        <div class="big-saturn"></div>
+      </div>
+    </section>
+
+    <section id="lorash">
+      <div class="section-label">Dil</div>
+      <h2>Lorash</h2>
+      <p class="intro">
+        Lorash, Thalora'nın resmî dilidir. Thalora'nın kendine özgü
+        kültürünü ve kimliğini yansıtan dil, ülkenin günlük yaşamının
+        temel parçalarından biridir.
+      </p>
+
+      <div class="language">
+        <strong>“Thalora'nın sesi: Lorash.”</strong>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>THALORA</strong>
+    <p>Titan'ın gökyüzü altında.</p>
+  </footer>
+</body>
+</html>
